@@ -1,0 +1,17 @@
+name: Create PR
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "!*"
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: wget
+        run: wget -O "`date +%Y%m%d_%H%M%S`.json"  http://api.open-notify.org/iss-now.json
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
