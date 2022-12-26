@@ -9,5 +9,12 @@ jobs:
   create-pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: ./.github/actions/create-pr
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
+          repository: champierre/test
+      - name: wget
+        run: wget -O "`date +%Y%m%d_%H%M%S`.json"  http://api.open-notify.org/iss-now.json
+      - uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.PAT }}
