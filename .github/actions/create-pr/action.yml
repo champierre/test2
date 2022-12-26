@@ -1,3 +1,5 @@
+name: "[Name] Create PR"
+description: "Create PR"
 runs:
   using: "composite"
   steps: 
