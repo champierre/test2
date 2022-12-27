@@ -14,8 +14,11 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
           repository: champierre/test
+          path: ./test
       - name: wget
+        working-directory: ./test
         run: wget -O "`date +%Y%m%d_%H%M%S`.json"  http://api.open-notify.org/iss-now.json
       - uses: peter-evans/create-pull-request@v4
         with:
+          path: ./test
           token: ${{ secrets.PAT }}
